@@ -119,7 +119,7 @@ const createFirework = (count = 100, position, size, texture, radius, color) => 
             uResolution: new THREE.Uniform(sizes.resolution),
             uTexture: new THREE.Uniform(texture),
             uColor: new THREE.Uniform(color),
-            uProgess: new THREE.Uniform(0)
+            uProgress: new THREE.Uniform(0)
         },
         transparent: true,
         depthWrite: false,

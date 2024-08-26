@@ -14,7 +14,16 @@ void main()
 
     // Exploding
     float explodingProgress = remap(uProgress, 0.0, 0.1, 0.0, 1.0);
-    newPosition *= explodingProgress;
+    explodingProgress = clamp(explodingProgress, 0.0, 1.0);
+    explodingProgress = 1.0 - pow(1.0 - explodingProgress, 3.0);
+    newPosition = mix(vec3(0.0), newPosition, explodingProgress);
+
+
+    // Falling
+    float fallingProgress = remap(uProgress, 0.1, 1.0, 0.0, 1.0);
+    fallingProgress = clamp(fallingProgress, 0.0, 1.0);
+    fallingProgress = 1.0 - pow(1.0 - fallingProgress, 3.0);
+    newPosition.y -= fallingProgress * 0.2;
 
     // Final position
     vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
